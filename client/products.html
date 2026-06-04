@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HoangPhanStore - Danh sách sản phẩm</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/output.css">
+</head>
+<body class="bg-canvas-parchment text-ink font-text">
+
+  <div id="header-container"></div>
+
+  <div class="bg-white border-b border-neutral-200 sticky top-11 z-20" id="category-nav-bar">
+    <div class="max-w-[1440px] mx-auto px-4 md:px-8 h-12 flex justify-between items-center overflow-x-auto no-scrollbar">
+      <div class="flex items-center gap-sm text-caption-apple text-neutral-500 whitespace-nowrap">
+        <a href="index.html" class="hover:text-primary">Trang chủ</a>
+        <span>/</span>
+        <span class="text-ink font-semibold" id="category-title-breadcrumb">Tất cả sản phẩm</span>
+      </div>
+      <div class="flex items-center gap-md" id="category-filter-chips">
+        <button data-category="all" class="px-md py-xxs rounded-pill bg-primary text-white text-caption-apple btn-press-effect font-medium">Tất cả</button>
+        <button data-category="phones" class="px-md py-xxs rounded-pill bg-canvas-parchment hover:bg-neutral-200 text-ink text-caption-apple btn-press-effect">Điện thoại</button>
+        <button data-category="laptops" class="px-md py-xxs rounded-pill bg-canvas-parchment hover:bg-neutral-200 text-ink text-caption-apple btn-press-effect">Laptops</button>
+        <button data-category="accessories" class="px-md py-xxs rounded-pill bg-canvas-parchment hover:bg-neutral-200 text-ink text-caption-apple btn-press-effect">Phụ kiện</button>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-[1440px] mx-auto px-4 md:px-8 py-lg">
+
+    <section class="flex flex-col md:flex-row justify-between items-center gap-sm mb-lg bg-white p-sm rounded-lg border border-neutral-200">
+
+      <div class="text-caption-apple text-neutral-500 order-3 md:order-1">
+        Hiển thị <span class="font-semibold text-ink" id="products-count">0</span> sản phẩm
+      </div>
+
+      <div class="relative w-full max-w-xs order-1 md:order-2">
+        <input
+          type="text"
+          id="products-search-input"
+          placeholder="Tìm trong danh mục này…"
+          class="w-full h-9 pl-10 pr-4 rounded-pill border border-neutral-200 bg-canvas-parchment text-caption-apple focus:outline-none focus:border-primary-focus transition-colors"
+        >
+        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-neutral-400">
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </span>
+      </div>
+
+      <div class="flex items-center gap-xs order-2 md:order-3 w-full md:w-auto justify-end">
+        <label for="sort-select" class="text-caption-apple text-neutral-500 whitespace-nowrap">Sắp xếp:</label>
+        <select
+          id="sort-select"
+          class="h-9 px-sm rounded-pill border border-neutral-200 bg-white text-caption-apple focus:outline-none focus:border-primary-focus"
+        >
+          <option value="featured">Nổi bật</option>
+          <option value="price-asc">Giá thấp đến cao</option>
+          <option value="price-desc">Giá cao đến thấp</option>
+          <option value="rating">Đánh giá cao nhất</option>
+        </select>
+      </div>
+    </section>
+
+    <section>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg" id="products-catalog-grid">
+
+      </div>
+
+      <div class="hidden text-center py-section" id="products-empty-state">
+        <div class="text-xxl mb-sm">🔍</div>
+        <h3 class="text-tagline mb-xxs">Không tìm thấy sản phẩm nào</h3>
+        <p class="text-caption-apple text-neutral-500 mb-lg">Hãy thử thay đổi điều kiện tìm kiếm hoặc bộ lọc.</p>
+        <button id="reset-filters-btn" class="bg-primary text-white rounded-pill px-lg py-xs text-button-utility hover:bg-primary-focus btn-press-effect">
+          Đặt lại bộ lọc
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer-container" class="bg-canvas border-t border-neutral-200"></footer>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>

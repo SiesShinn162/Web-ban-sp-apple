@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HoangPhanStore - Giỏ hàng của bạn</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/output.css">
+</head>
+<body class="bg-canvas-parchment text-ink font-text">
+
+  <div id="header-container"></div>
+
+  <main class="max-w-[1068px] mx-auto px-4 md:px-8 py-section">
+    <h1 class="text-display-lg text-ink mb-xl text-center">Giỏ hàng của bạn</h1>
+
+    <div id="cart-container" class="grid grid-cols-1 lg:grid-cols-12 gap-xl hidden">
+
+      <div class="lg:col-span-8 space-y-sm" id="cart-items-list">
+
+      </div>
+
+      <div class="lg:col-span-4">
+        <div class="bg-white rounded-lg p-lg border border-neutral-200 sticky top-16">
+          <h3 class="text-tagline mb-md text-ink">Tổng đơn hàng</h3>
+          <div class="space-y-sm text-caption-apple text-neutral-500 mb-lg">
+            <div class="flex justify-between">
+              <span>Tạm tính</span>
+              <span class="text-ink font-medium" id="cart-subtotal">0đ</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Phí vận chuyển</span>
+              <span class="text-ink font-medium" id="cart-shipping">Miễn phí</span>
+            </div>
+            <hr class="border-neutral-100 my-xs">
+            <div class="flex justify-between text-body-apple font-semibold">
+              <span class="text-ink">Tổng cộng</span>
+              <span class="text-primary" id="cart-total">0đ</span>
+            </div>
+          </div>
+          <a href="checkout.html" class="w-full bg-primary text-white rounded-pill py-sm font-semibold hover:bg-primary-focus btn-press-effect flex justify-center items-center gap-xxs text-body-apple">
+            Tiến hành thanh toán
+          </a>
+          <div class="mt-sm text-center">
+            <a href="products.html" class="text-primary text-caption-apple hover:underline">
+              Tiếp tục mua sắm
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="cart-empty-state" class="text-center py-section bg-white rounded-lg border border-neutral-200 p-lg hidden max-w-xl mx-auto">
+      <div class="text-xxl mb-sm">🛍️</div>
+      <h3 class="text-tagline mb-xxs text-ink">Giỏ hàng trống</h3>
+      <p class="text-caption-apple text-neutral-500 mb-lg">Bạn chưa thêm sản phẩm nào vào giỏ hàng.</p>
+      <a href="products.html" class="bg-primary text-white rounded-pill px-lg py-xs text-button-utility hover:bg-primary-focus btn-press-effect inline-block">
+        Mua sắm ngay
+      </a>
+    </div>
+
+  </main>
+
+  <footer id="footer-container" class="bg-canvas border-t border-neutral-200"></footer>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>

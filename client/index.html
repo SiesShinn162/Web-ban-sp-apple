@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HoangPhanStore - Cửa hàng điện thoại và phụ kiện chính hãng</title>
+  <meta name="description"
+    content="Trải nghiệm mua sắm điện thoại và phụ kiện cao cấp phong cách Apple. Sản phẩm chính hãng, ưu đãi độc quyền.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/output.css">
+</head>
+
+<body class="bg-canvas text-ink font-text">
+
+  <div id="header-container"></div>
+
+  <section class="max-w-[1440px] mx-auto px-4 md:px-8 pt-6 pb-2" id="search-section">
+    <div class="flex justify-center">
+      <div class="relative w-full max-w-lg">
+        <input type="text" id="global-search-input" placeholder="Tìm kiếm sản phẩm (iPhone, Xiaomi…)…"
+          class="w-full h-11 pl-12 pr-6 rounded-pill border border-neutral-200 bg-white text-body-apple focus:outline-none focus:border-primary-focus transition-colors">
+        <span class="absolute left-5 top-1/2 -translate-y-1/2 text-neutral-400">
+
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+          </svg>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <main id="main-content">
+
+    <section
+      class="relative w-full min-h-[600px] flex flex-col justify-between items-center text-center py-section bg-canvas-parchment overflow-hidden"
+      id="hero-section">
+      <div class="z-10 max-w-2xl px-4">
+        <h1 class="text-hero-display text-ink mb-xxs">iPhone 17 Pro</h1>
+        <p class="text-lead text-neutral-600 mb-sm">Sáng tạo không giới hạn. Siêu phẩm tương lai.</p>
+        <div class="flex justify-center gap-lg">
+          <a href="products.html"
+            class="bg-primary text-white rounded-pill px-xxl py-sm font-body-apple hover:bg-primary-focus btn-press-effect">
+            Mua ngay
+          </a>
+          <a href="product-detail.html?slug=iphone-15-pro-max-256gb"
+            class="text-primary hover:underline flex items-center font-body-apple gap-xxs">
+            Tìm hiểu thêm &gt;
+          </a>
+        </div>
+      </div>
+      <div class="relative w-full max-w-4xl mt-lg px-4">
+
+        <img src="img/macbook-air.png" alt="iPhone 17 Pro Hero Renders" width="800" height="500"
+          class="w-full max-w-2xl mx-auto drop-shadow-product object-contain transition-transform duration-500 hover:scale-[1.02]">
+      </div>
+    </section>
+
+    <section
+      class="w-full py-section bg-surface-tile1 text-white text-center flex flex-col justify-between items-center overflow-hidden"
+      id="secondary-hero-section">
+      <div class="max-w-2xl px-4 z-10">
+        <h2 class="text-display-lg text-white mb-xxs">MacBook Air</h2>
+        <p class="text-lead text-neutral-300 mb-sm">Mỏng nhẹ phi thường. Sức mạnh vượt trội.</p>
+        <div class="flex justify-center gap-lg">
+          <a href="products.html?category=laptops"
+            class="bg-primary text-white rounded-pill px-xxl py-sm font-body-apple hover:bg-primary-focus btn-press-effect">
+            Xem thêm
+          </a>
+        </div>
+      </div>
+      <div class="relative w-full max-w-4xl mt-lg px-4">
+        <img src="img/macbook-air2.png" alt="MacBook Air" width="640" height="400"
+          class="w-full max-w-xl mx-auto drop-shadow-product object-contain">
+      </div>
+    </section>
+
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8 py-section grid grid-cols-1 md:grid-cols-2 gap-lg"
+      id="promo-grid">
+
+      <div
+        class="bg-canvas-parchment rounded-lg p-lg flex flex-col justify-between items-center text-center min-h-[450px]">
+        <div>
+          <h3 class="text-tagline mb-xxs text-ink">Apple Watch Series 6</h3>
+          <p class="text-caption-apple text-neutral-500">Tương lai của sức khỏe nằm trên cổ tay bạn.</p>
+        </div>
+        <img src="img/apple-watch-6.png" alt="Apple Watch Series 6" width="192" height="192" loading="lazy"
+          class="w-48 h-48 object-contain drop-shadow-product my-sm">
+        <a href="product-detail.html?slug=apple-watch-series-6-lte"
+          class="text-primary hover:underline text-button-utility">Tìm hiểu thêm &gt;</a>
+      </div>
+
+      <div
+        class="bg-surface-tile2 text-white rounded-lg p-lg flex flex-col justify-between items-center text-center min-h-[450px]">
+        <div>
+          <h3 class="text-tagline mb-xxs text-white">iPad Air</h3>
+          <p class="text-caption-apple text-neutral-400">Đầy màu sắc. Rất mạnh mẽ.</p>
+        </div>
+        <img src="img/ipad-air.png" alt="iPad Air" width="192" height="192" loading="lazy"
+          class="w-48 h-48 object-contain drop-shadow-product my-sm">
+        <a href="product-detail.html?slug=ipad-air-5-m1-64gb"
+          class="text-primary-dark hover:underline text-button-utility">Tìm hiểu thêm &gt;</a>
+      </div>
+    </section>
+
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8 py-section border-t border-neutral-100"
+      id="featured-products-section">
+      <div class="text-center mb-xl">
+        <h2 class="text-display-lg text-ink mb-xxs">Sản phẩm nổi bật</h2>
+        <p class="text-body-apple text-neutral-500">Khám phá các dòng điện thoại mới nhất của chúng tôi.</p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-lg" id="featured-products-grid">
+
+      </div>
+    </section>
+
+    <section class="w-full bg-canvas-parchment py-section text-center px-4 scroll-mt-24" id="trade-in-section">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="text-display-lg mb-xxs">Đổi máy cũ, Lên đời máy mới</h2>
+        <p class="text-body-apple text-neutral-600 mb-lg">
+          Mang chiếc điện thoại cũ của bạn tới cửa hàng và nhận giá trị khấu trừ cực cao để lên đời dòng sản phẩm cao
+          cấp mới nhất.
+        </p>
+        <button
+          class="bg-primary text-white rounded-pill px-xxl py-sm font-body-apple hover:bg-primary-focus btn-press-effect">
+          Định giá máy cũ ngay
+        </button>
+      </div>
+    </section>
+
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8 py-section" id="accessories-section">
+      <div class="flex justify-between items-end mb-lg">
+        <div>
+          <h2 class="text-tagline md:text-display-md mb-xxs text-ink">Phụ kiện nổi bật</h2>
+          <p class="text-caption-apple text-neutral-500">Những món đồ đi kèm không thể thiếu cho thiết bị của bạn.</p>
+        </div>
+        <a href="products.html?category=accessories"
+          class="text-primary hover:underline text-button-utility font-semibold">Xem tất cả &gt;</a>
+      </div>
+      <div class="flex gap-lg overflow-x-auto pb-6 no-scrollbar snap-x" id="accessories-grid">
+
+      </div>
+    </section>
+
+    <section class="max-w-[1440px] mx-auto px-4 md:px-8 py-section border-t border-neutral-100 scroll-mt-24"
+      id="brand-values">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-xl">
+        <div class="text-center p-sm">
+          <div class="text-primary text-display-lg mb-xs">🚚</div>
+          <h4 class="text-body-strong mb-xxs">Giao Hàng Siêu Tốc</h4>
+          <p class="text-caption-apple text-neutral-500">Miễn phí giao hàng toàn quốc cho đơn hàng từ 1 triệu đồng. Nhận
+            hàng trong ngày tại Hà Nội và TP.HCM.</p>
+        </div>
+        <div class="text-center p-sm">
+          <div class="text-primary text-display-lg mb-xs">🛡️</div>
+          <h4 class="text-body-strong mb-xxs">Bảo Hành Chính Hãng</h4>
+          <p class="text-caption-apple text-neutral-500">Chính sách bảo hành 12 tháng lỗi 1 đổi 1 từ nhà sản xuất. Hỗ
+            trợ kỹ thuật 24/7 trực tuyến.</p>
+        </div>
+        <div class="text-center p-sm">
+          <div class="text-primary text-display-lg mb-xs">💳</div>
+          <h4 class="text-body-strong mb-xxs">Trả Góp Dễ Dàng</h4>
+          <p class="text-caption-apple text-neutral-500">Hỗ trợ trả góp lãi suất 0% qua thẻ tín dụng hoặc các công ty
+            tài chính đối tác thủ tục nhanh chóng.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer id="footer-container" class="bg-canvas-parchment border-t border-neutral-200"></footer>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+
+</html>

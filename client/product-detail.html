@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HoangPhanStore - Chi tiết sản phẩm</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/output.css">
+</head>
+<body class="bg-white text-ink font-text">
+
+  <div id="header-container"></div>
+
+  <div class="bg-canvas-parchment border-b border-neutral-200">
+    <div class="max-w-[1440px] mx-auto px-4 md:px-8 h-12 flex justify-between items-center text-caption-apple text-neutral-500">
+      <div class="flex items-center gap-sm whitespace-nowrap overflow-x-auto no-scrollbar">
+        <a href="index.html" class="hover:text-primary">Trang chủ</a>
+        <span>/</span>
+        <a href="products.html" class="hover:text-primary" id="detail-category-link">Sản phẩm</a>
+        <span>/</span>
+        <span class="text-ink font-semibold" id="detail-product-name-breadcrumb">…</span>
+      </div>
+    </div>
+  </div>
+
+  <main class="max-w-[1440px] mx-auto px-4 md:px-8 py-lg pb-xxl" id="product-detail-container">
+
+    <div id="detail-loading" class="flex justify-center items-center py-section text-neutral-400">
+      <div class="animate-spin rounded-full h-8 w-8 border-2 border-primary border-t-transparent mr-sm"></div>
+      Đang tải chi tiết sản phẩm…
+    </div>
+
+    <div id="detail-content" class="hidden">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-xl mb-xxl">
+
+        <div class="lg:col-span-7 flex flex-col items-center">
+          <div class="w-full bg-canvas-parchment rounded-lg p-lg flex justify-center items-center min-h-[400px] md:min-h-[500px]">
+
+            <img id="detail-main-img" src="" alt="" class="max-w-xs md:max-w-md object-contain drop-shadow-product transition-transform duration-300">
+          </div>
+
+          <div class="flex gap-sm mt-md overflow-x-auto no-scrollbar py-xxs" id="detail-thumbs-container">
+
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 flex flex-col justify-between">
+          <div>
+            <span class="inline-block text-caption-strong text-primary uppercase tracking-wider mb-xxs" id="detail-brand">...</span>
+            <h1 class="text-display-md text-ink mb-xxs" id="detail-title">...</h1>
+
+            <div class="flex items-center gap-xs mb-sm">
+              <div class="flex text-amber-400" id="detail-stars"></div>
+              <span class="text-caption-apple text-neutral-500" id="detail-reviews-count">(0 đánh giá)</span>
+            </div>
+
+            <div class="flex items-baseline gap-sm mb-lg">
+              <span class="text-display-md text-primary font-semibold" id="detail-price">...</span>
+              <span class="text-body-apple text-neutral-400 line-through" id="detail-old-price"></span>
+            </div>
+
+            <hr class="border-neutral-100 my-md">
+
+            <p class="text-body-apple text-neutral-600 mb-lg" id="detail-desc-summary">...</p>
+
+            <div class="mb-lg" id="detail-variants-container">
+              <h4 class="text-caption-strong text-neutral-500 mb-xs">Cấu hình có sẵn:</h4>
+              <div class="grid grid-cols-2 gap-sm" id="detail-variants-grid">
+
+              </div>
+            </div>
+
+            <div class="flex items-center gap-md mb-lg">
+              <span class="text-caption-strong text-neutral-500">Số lượng:</span>
+              <div class="flex items-center border border-neutral-300 rounded-pill h-10 px-xxs bg-white">
+                <button id="qty-dec-btn" class="w-8 h-8 rounded-full flex justify-center items-center text-ink hover:bg-neutral-100 font-semibold btn-press-effect">-</button>
+                <input type="number" id="qty-input" value="1" min="1" class="w-10 text-center font-semibold focus:outline-none text-body-apple" readonly>
+                <button id="qty-inc-btn" class="w-8 h-8 rounded-full flex justify-center items-center text-ink hover:bg-neutral-100 font-semibold btn-press-effect">+</button>
+              </div>
+              <span class="text-caption-apple text-neutral-400" id="detail-stock-count">Còn hàng: …</span>
+            </div>
+          </div>
+
+          <div class="mt-xl">
+            <button id="add-to-cart-btn" class="w-full bg-primary text-white rounded-pill py-sm text-body-apple font-semibold hover:bg-primary-focus btn-press-effect flex justify-center items-center gap-sm">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+              </svg>
+              Thêm vào giỏ hàng
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <section class="mt-xxl border-t border-neutral-100 pt-xxl">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-xl">
+          <div class="md:col-span-7">
+            <h3 class="text-tagline mb-md text-ink">Mô tả sản phẩm</h3>
+            <div class="text-body-apple text-neutral-600 space-y-md leading-relaxed" id="detail-desc-full">
+
+            </div>
+          </div>
+          <div class="md:col-span-5 bg-canvas-parchment rounded-lg p-lg border border-neutral-200">
+            <h3 class="text-caption-strong text-ink uppercase tracking-wider mb-md">Thông số kỹ thuật</h3>
+            <table class="w-full text-caption-apple">
+              <tbody class="divide-y divide-neutral-200" id="detail-specs-table">
+
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="detail-error" class="hidden text-center py-section text-neutral-500">
+      <div class="text-xxl mb-sm">⚠️</div>
+      <h3 class="text-tagline mb-xxs">Đã xảy ra lỗi</h3>
+      <p class="text-caption-apple text-neutral-500 mb-lg" id="detail-error-message">Không thể tải thông tin sản phẩm.</p>
+      <a href="products.html" class="bg-primary text-white rounded-pill px-lg py-xs text-button-utility hover:bg-primary-focus btn-press-effect">
+        Quay lại danh sách
+      </a>
+    </div>
+
+  </main>
+
+  <div id="sticky-purchase-bar" class="fixed bottom-0 left-0 right-0 h-16 bg-canvas-parchment/90 backdrop-blur-md border-t border-neutral-200 px-6 py-3 flex justify-between items-center z-30 transition-transform duration-300 translate-y-full">
+    <div class="flex items-center gap-md">
+      <img id="sticky-bar-img" src="" alt="" width="40" height="40" class="w-10 h-10 object-contain drop-shadow-product">
+      <div>
+        <h4 id="sticky-bar-title" class="text-caption-strong text-ink">…</h4>
+        <span id="sticky-bar-price" class="text-caption-apple text-primary font-semibold">…</span>
+      </div>
+    </div>
+    <button id="sticky-bar-buy-btn" class="bg-primary text-white rounded-pill px-xl py-xxs text-caption-apple font-semibold hover:bg-primary-focus btn-press-effect">
+      Thêm vào giỏ
+    </button>
+  </div>
+
+  <footer id="footer-container" class="bg-canvas-parchment border-t border-neutral-200"></footer>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>

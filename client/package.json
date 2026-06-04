@@ -1,0 +1,18 @@
+{
+  "name": "company-profile-client",
+  "version": "1.0.0",
+  "description": "Frontend client for Modern E-commerce Phone Store",
+  "main": "src/js/main.js",
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css",
+    "watch:css": "tailwindcss -i ./src/css/input.css -o ./src/css/output.css --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  }
+}

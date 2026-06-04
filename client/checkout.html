@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HoangPhanStore - Thanh toán</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/output.css">
+</head>
+<body class="bg-canvas-parchment text-ink font-text">
+
+  <div id="header-container"></div>
+
+  <main class="max-w-[1068px] mx-auto px-4 md:px-8 py-section">
+    <h1 class="text-display-lg text-ink mb-xl text-center">Thanh toán</h1>
+
+    <div id="checkout-container" class="grid grid-cols-1 lg:grid-cols-12 gap-xl hidden">
+
+      <form class="lg:col-span-7 space-y-md" id="checkout-form">
+
+        <div class="bg-white rounded-lg p-lg border border-neutral-200">
+          <h3 class="text-caption-strong text-ink uppercase tracking-wider mb-md">Thông tin giao hàng</h3>
+          <div class="space-y-sm">
+            <div>
+              <label for="fullName" class="block text-caption-apple text-neutral-500 mb-xxs">Họ và tên *</label>
+              <input type="text" id="fullName" name="fullName" autocomplete="name" required class="w-full h-10 px-sm border border-neutral-200 rounded-sm text-caption-apple focus:outline-none focus:border-primary-focus">
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-sm">
+              <div>
+                <label for="phone" class="block text-caption-apple text-neutral-500 mb-xxs">Số điện thoại *</label>
+                <input type="tel" id="phone" name="phone" autocomplete="tel" spellcheck="false" required class="w-full h-10 px-sm border border-neutral-200 rounded-sm text-caption-apple focus:outline-none focus:border-primary-focus">
+              </div>
+              <div>
+                <label for="email" class="block text-caption-apple text-neutral-500 mb-xxs">Email *</label>
+                <input type="email" id="email" name="email" autocomplete="email" spellcheck="false" required class="w-full h-10 px-sm border border-neutral-200 rounded-sm text-caption-apple focus:outline-none focus:border-primary-focus">
+              </div>
+            </div>
+            <div>
+              <label for="address" class="block text-caption-apple text-neutral-500 mb-xxs">Địa chỉ giao hàng *</label>
+              <textarea id="address" name="address" autocomplete="shipping street-address" required rows="3" class="w-full p-sm border border-neutral-200 rounded-sm text-caption-apple focus:outline-none focus:border-primary-focus"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-lg p-lg border border-neutral-200">
+          <h3 class="text-caption-strong text-ink uppercase tracking-wider mb-md">Phương thức thanh toán</h3>
+          <div class="space-y-sm">
+            <label class="flex items-center gap-sm p-sm border border-neutral-200 rounded-sm cursor-pointer hover:bg-canvas-parchment">
+              <input type="radio" name="paymentMethod" value="cod_demo" checked class="text-primary focus:ring-primary-focus">
+              <div>
+                <span class="block text-caption-strong">Thanh toán khi nhận hàng (COD Demo)</span>
+                <span class="block text-micro-legal text-neutral-400">Thanh toán trực tiếp bằng tiền mặt khi nhận được sản phẩm.</span>
+              </div>
+            </label>
+            <label class="flex items-center gap-sm p-sm border border-neutral-200 rounded-sm cursor-pointer hover:bg-canvas-parchment">
+              <input type="radio" name="paymentMethod" value="card_success_demo" class="text-primary focus:ring-primary-focus">
+              <div>
+                <span class="block text-caption-strong">Mô phỏng Thẻ tín dụng (Giao dịch thành công)</span>
+                <span class="block text-micro-legal text-neutral-400">Mô phỏng quy trình cổng thanh toán thẻ trả về kết quả thành công.</span>
+              </div>
+            </label>
+            <label class="flex items-center gap-sm p-sm border border-neutral-200 rounded-sm cursor-pointer hover:bg-canvas-parchment">
+              <input type="radio" name="paymentMethod" value="card_failed_demo" class="text-primary focus:ring-primary-focus">
+              <div>
+                <span class="block text-caption-strong">Mô phỏng Thẻ tín dụng (Giao dịch thất bại)</span>
+                <span class="block text-micro-legal text-neutral-400">Mô phỏng quy trình cổng thanh toán thẻ trả về kết quả lỗi từ chối.</span>
+              </div>
+            </label>
+          </div>
+        </div>
+      </form>
+
+      <div class="lg:col-span-5">
+        <div class="bg-white rounded-lg p-lg border border-neutral-200 space-y-md sticky top-16">
+          <h3 class="text-caption-strong text-ink uppercase tracking-wider mb-xs">Đơn hàng của bạn</h3>
+
+          <div class="divide-y divide-neutral-100 max-h-60 overflow-y-auto pr-xs" id="checkout-items-list">
+
+          </div>
+
+          <div class="space-y-sm text-caption-apple text-neutral-500 pt-sm">
+            <div class="flex justify-between">
+              <span>Tạm tính</span>
+              <span class="text-ink font-medium" id="checkout-subtotal">0đ</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Phí giao hàng</span>
+              <span class="text-ink font-medium">Miễn phí</span>
+            </div>
+            <hr class="border-neutral-100">
+            <div class="flex justify-between text-body-apple font-semibold">
+              <span class="text-ink">Tổng cộng</span>
+              <span class="text-primary" id="checkout-total">0đ</span>
+            </div>
+          </div>
+
+          <button type="submit" form="checkout-form" id="place-order-btn" class="w-full bg-primary text-white rounded-pill py-sm font-semibold hover:bg-primary-focus btn-press-effect flex justify-center items-center gap-sm text-body-apple mt-md">
+            Đặt hàng ngay
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div id="checkout-empty-state" class="text-center py-section bg-white rounded-lg border border-neutral-200 p-lg hidden max-w-xl mx-auto">
+      <div class="text-xxl mb-sm">🛍️</div>
+      <h3 class="text-tagline mb-xxs text-ink">Giỏ hàng trống</h3>
+      <p class="text-caption-apple text-neutral-500 mb-lg">Bạn cần có sản phẩm trong giỏ hàng để tiến hành thanh toán.</p>
+      <a href="products.html" class="bg-primary text-white rounded-pill px-lg py-xs text-button-utility hover:bg-primary-focus btn-press-effect inline-block">
+        Mua sắm ngay
+      </a>
+    </div>
+
+  </main>
+
+  <footer id="footer-container" class="bg-canvas border-t border-neutral-200"></footer>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>

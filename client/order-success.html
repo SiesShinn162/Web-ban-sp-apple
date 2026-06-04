@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HoangPhanStore - Đặt hàng thành công</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="src/css/output.css">
+</head>
+<body class="bg-canvas-parchment text-ink font-text">
+
+  <div id="header-container"></div>
+
+  <main class="max-w-[640px] mx-auto px-4 py-section">
+    <div class="bg-white rounded-lg p-lg border border-neutral-200 text-center space-y-md">
+
+      <div class="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-full flex justify-center items-center mx-auto text-display-lg">
+        ✓
+      </div>
+
+      <h1 class="text-display-md text-ink">Đặt hàng thành công!</h1>
+      <p class="text-body-apple text-neutral-500">Cảm ơn bạn đã mua sắm tại HoangPhanStore. Đơn hàng của bạn đã được tiếp nhận và đang được xử lý.</p>
+
+      <div class="bg-canvas-parchment rounded-sm p-md text-left text-caption-apple space-y-xs border border-neutral-100">
+        <div class="flex justify-between">
+          <span class="text-neutral-500">Mã đơn hàng:</span>
+          <span class="font-semibold text-ink" id="success-order-code">...</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-neutral-500">Người nhận:</span>
+          <span class="font-semibold text-ink" id="success-customer-name">...</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-neutral-500">Số điện thoại:</span>
+          <span class="font-semibold text-ink" id="success-customer-phone">...</span>
+        </div>
+        <div class="flex justify-between">
+          <span class="text-neutral-500">Tổng cộng:</span>
+          <span class="font-semibold text-primary" id="success-order-total">0đ</span>
+        </div>
+      </div>
+
+      <div class="pt-sm space-y-sm">
+        <a href="index.html" class="w-full bg-primary text-white rounded-pill py-sm font-semibold hover:bg-primary-focus btn-press-effect flex justify-center items-center text-body-apple">
+          Quay lại trang chủ
+        </a>
+        <p class="text-micro-legal text-neutral-400">Một bản xác nhận đơn hàng đã được gửi tới địa chỉ email của bạn.</p>
+      </div>
+
+    </div>
+  </main>
+
+  <footer id="footer-container" class="bg-canvas-parchment border-t border-neutral-200"></footer>
+
+  <script type="module" src="src/js/main.js"></script>
+</body>
+</html>
