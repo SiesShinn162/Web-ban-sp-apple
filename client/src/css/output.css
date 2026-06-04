@@ -1157,6 +1157,10 @@ h1, h2, h3, h4, h5, h6 {
   animation: spin 1s linear infinite;
 }
 
+.cursor-not-allowed {
+  cursor: not-allowed;
+}
+
 .cursor-pointer {
   cursor: pointer;
 }
@@ -1399,6 +1403,11 @@ h1, h2, h3, h4, h5, h6 {
 .bg-emerald-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(16 185 129 / var(--tw-bg-opacity, 1));
+}
+
+.bg-neutral-300 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(212 212 212 / var(--tw-bg-opacity, 1));
 }
 
 .bg-primary {
@@ -1829,6 +1838,11 @@ h1, h2, h3, h4, h5, h6 {
 .text-primary-dark {
   --tw-text-opacity: 1;
   color: rgb(41 151 255 / var(--tw-text-opacity, 1));
+}
+
+.text-red-500 {
+  --tw-text-opacity: 1;
+  color: rgb(239 68 68 / var(--tw-text-opacity, 1));
 }
 
 .text-white {

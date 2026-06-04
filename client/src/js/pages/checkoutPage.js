@@ -3,12 +3,98 @@ import { orderApi } from '../services/orderApi.js';
 import { formatCurrency } from '../utils/formatCurrency.js';
 import { toast } from '../components/toast.js';
 import { $ } from '../utils/dom.js';
+import { productApi } from '../services/productApi.js';
 
 export const checkoutPage = {
-  init() {
+  async init() {
     console.log('Khởi tạo Trang thanh toán...');
-    this.renderSummary();
-    this.registerEventListeners();
+    try {
+      await this.syncCartWithServer();
+      this.renderSummary();
+      this.registerEventListeners();
+    } catch (e) {
+      console.error('Không khởi chạy được trang thanh toán do lỗi hệ thống:', e);
+    }
+  },
+
+  async syncCartWithServer() {
+    const gioHang = cartStore.getCart();
+    if (gioHang.length === 0) return;
+
+    try {
+      const ketQua = await productApi.getProducts();
+      const dsSanPhamDb = ketQua.data || ketQua;
+
+      let daThayDoi = false;
+      const gioHangMoi = [];
+
+      for (const mucGioHang of gioHang) {
+        const sanPhamDb = dsSanPhamDb.find(p => p._id === mucGioHang.productId || p.id === mucGioHang.productId);
+        if (sanPhamDb) {
+          let giaDuKien = sanPhamDb.price;
+          const khopBianthe = mucGioHang.name.match(/\(([^)]+)\)$/);
+          const nhanBianthe = khopBianthe ? khopBianthe[1] : null;
+
+          if (sanPhamDb.slug === 'iphone-15-pro-max-256gb' && nhanBianthe) {
+            if (nhanBianthe === '128 GB') giaDuKien = sanPhamDb.price - 4000000;
+            else if (nhanBianthe === '512 GB') giaDuKien = sanPhamDb.price + 6000000;
+          } else if (sanPhamDb.slug === 'iphone-15-128gb' && nhanBianthe) {
+            if (nhanBianthe === '256 GB') giaDuKien = sanPhamDb.price + 3000000;
+          }
+
+          let soLuongMoi = mucGioHang.quantity;
+          if (soLuongMoi > sanPhamDb.stock) {
+            soLuongMoi = sanPhamDb.stock;
+            daThayDoi = true;
+          }
+
+          if (giaDuKien !== mucGioHang.price) {
+            mucGioHang.price = giaDuKien;
+            daThayDoi = true;
+          }
+
+          if (mucGioHang.stock !== sanPhamDb.stock) {
+            mucGioHang.stock = sanPhamDb.stock;
+            daThayDoi = true;
+          }
+
+          if (soLuongMoi > 0) {
+            mucGioHang.quantity = soLuongMoi;
+            gioHangMoi.push(mucGioHang);
+          } else {
+            daThayDoi = true;
+          }
+        } else {
+          daThayDoi = true;
+        }
+      }
+
+      if (daThayDoi) {
+        cartStore.saveCart(gioHangMoi);
+        toast.show('Giỏ hàng đã được tự động cập nhật theo giá/tồn kho mới nhất.', 'info');
+      }
+    } catch (loi) {
+      console.error('Không thể kết nối máy chủ để xác thực giỏ hàng:', loi);
+      this.showErrorState('Không thể kết nối máy chủ để xác thực thông tin thanh toán. Vui lòng thử lại sau.');
+      throw loi;
+    }
+  },
+
+  showErrorState(msg) {
+    const khungThanhToan = $('#checkout-container');
+    const khungTrong = $('#checkout-empty-state');
+    if (khungThanhToan) khungThanhToan.classList.add('hidden');
+    if (khungTrong) {
+      khungTrong.innerHTML = `
+        <div class="text-xxl mb-sm">⚠️</div>
+        <h3 class="text-tagline mb-xxs text-ink">Lỗi kết nối máy chủ</h3>
+        <p class="text-caption-apple text-neutral-500 mb-lg">${msg}</p>
+        <a href="cart.html" class="bg-primary text-white rounded-pill px-lg py-xs text-button-utility hover:bg-primary-focus btn-press-effect inline-block">
+          Quay lại giỏ hàng
+        </a>
+      `;
+      khungTrong.classList.remove('hidden');
+    }
   },
 
   renderSummary() {
@@ -85,40 +171,24 @@ export const checkoutPage = {
       };
 
       try {
-        let response;
-
         if (phuongThucThanhToan === 'card_failed_demo') {
           throw new Error('Thanh toán thất bại: Giao dịch bị từ chối bởi ngân hàng phát hành thẻ (Mô phỏng).');
         }
 
-        try {
-          response = await orderApi.createOrder(duLieuDonHang);
-        } catch (apiError) {
-          console.warn('API Server không khả dụng, tạo mã đơn hàng mô phỏng offline:', apiError);
+        const ketQuaPhanHoi = await orderApi.createOrder(duLieuDonHang);
 
-          const mockOrderCode = `ORD-${new Date().getFullYear()}-${Math.floor(1000 + Math.random() * 9000)}`;
-          response = {
-            success: true,
-            data: {
-              orderCode: mockOrderCode,
-              customer: { fullName: hoTen, phone: soDienThoai },
-              total: cartStore.getCartTotal()
-            }
-          };
-        }
-
-        const order = response.data || response;
+        const donHang = ketQuaPhanHoi.data || ketQuaPhanHoi;
 
         cartStore.clearCart();
 
         toast.show('Đặt hàng thành công!');
         setTimeout(() => {
-          window.location.href = `order-success.html?orderCode=${order.orderCode}&name=${encodeURIComponent(order.customer.fullName)}&phone=${order.customer.phone}&total=${order.total}`;
+          window.location.href = `order-success.html?orderCode=${donHang.orderCode}&name=${encodeURIComponent(donHang.customer.fullName)}&phone=${donHang.customer.phone}&total=${donHang.total}`;
         }, 1000);
 
-      } catch (err) {
-        console.error('Lỗi đặt hàng:', err);
-        toast.show(err.message || 'Lỗi khi tiến hành đặt hàng.', 'error');
+      } catch (loi) {
+        console.error('Lỗi đặt hàng:', loi);
+        toast.show(loi.message || 'Lỗi khi tiến hành đặt hàng.', 'error');
 
         if (nutDatHang) {
           nutDatHang.disabled = false;

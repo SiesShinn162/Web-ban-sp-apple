@@ -53,23 +53,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const img = btn.dataset.productImage;
       const slug = btn.dataset.productSlug || '';
 
+      const chuoiTonKho = btn.dataset.productStock;
+      const tonKho = chuoiTonKho !== undefined ? parseInt(chuoiTonKho, 10) : 0;
+
       if (!productId || !name || isNaN(price)) {
         console.error('Thông tin sản phẩm trên nút Thêm không hợp lệ:', btn.dataset);
         return;
       }
 
-      const productData = {
+      if (tonKho <= 0) {
+        toast.show(`Sản phẩm "${name}" đã hết hàng!`, 'error');
+        return;
+      }
+
+      const duLieuSanPham = {
         id: productId,
         _id: productId,
         name,
         price,
         images: [img],
         slug,
-        stock: 99
+        stock: tonKho
       };
 
-      cartStore.addToCart(productData, 1);
-      toast.show(`Đã thêm "${name}" vào giỏ hàng thành công!`);
+      cartStore.addToCart(duLieuSanPham, 1);
     } catch (err) {
       console.error('Lỗi khi thêm sản phẩm vào giỏ hàng từ nút Card:', err);
     }

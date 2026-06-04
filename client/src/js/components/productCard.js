@@ -63,6 +63,7 @@ export function createProductCardHtml(product) {
               data-product-price="${product.price}"
               data-product-image="${imageUrl}"
               data-product-slug="${product.slug}"
+              data-product-stock="${product.stock !== undefined ? product.stock : 0}"
             >
               + Thêm
             </button>
