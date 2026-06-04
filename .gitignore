@@ -12,6 +12,14 @@ config/
 config.*
 *.config.*
 
+# Required public runtime configuration
+!client/tailwind.config.js
+!client/src/js/config.js
+!server/src/config/
+server/src/config/*
+!server/src/config/env.js
+!server/src/config/database.js
+
 # Agent and assistant files
 .agents/
 .agent/
